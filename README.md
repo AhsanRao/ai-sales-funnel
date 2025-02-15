@@ -49,23 +49,18 @@ venv\Scripts\activate  # Windows
 
 3. Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -r deployment/requirements.txt
 ```
 
 4. Set up environment variables:
 ```bash
-cp .env.example .env
+cp env.example .env
 # Edit .env with your API keys and configuration
-```
-
-5. Initialize the database:
-```bash
-flask db upgrade
 ```
 
 ## Configuration
 
-Create a `.env` file with the following variables:
+Create a `.env` file with the following variables (see env.example):
 ```
 FB_PAGE_ACCESS_TOKEN=your_facebook_token
 OPENAI_API_KEY=your_openai_key
@@ -96,18 +91,37 @@ python app.py
 
 ```
 ai-sales-funnel/
-├── app/
-│   ├── __init__.py
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   └── utils/
-├── migrations/
-├── tests/
+├── app.py
 ├── config.py
-├── requirements.txt
-└── app.py
+├── models.py
+├── deployment/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
+├── docs/
+│   ├── API.md
+│   ├── DEPLOYMENT.md
+│   └── SETUP.md
+├── services/
+│   ├── ai_service.py
+│   ├── conversation_manager.py
+│   ├── facebook_service.py
+│   ├── follow_up_service.py
+│   └── payment_service.py
+├── tests/
+│   ├── test_ai_service.py
+│   └── test_facebook_service.py
+├── env.example
+├── LICENSE
+└── README.md
 ```
+
+## Documentation
+
+Detailed documentation can be found in the `docs` directory:
+- `API.md` - API endpoints and usage
+- `DEPLOYMENT.md` - Deployment instructions
+- `SETUP.md` - Detailed setup guide
 
 ## Development
 
@@ -128,11 +142,7 @@ black .
 
 ## Deployment
 
-1. Set up server with required dependencies
-2. Configure environment variables
-3. Set up database
-4. Configure webhook URLs
-5. Start application with gunicorn
+For detailed deployment instructions, please refer to `docs/DEPLOYMENT.md`. The project includes Docker support with configuration files in the `deployment` directory.
 
 ## Contributing
 
